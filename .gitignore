@@ -1,0 +1,23 @@
+target/
+build/
+out/
+
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+test-output/
+screenshots/
+logs/
+*.log
+
+# Звіти й результати Allure, якщо їх згенерували поза target/
+allure-results/
+allure-report/
+# Локально розпакований Allure CLI (.allure/allure-2.29.0) — ~60 МБ jar-ів
+.allure/
+
+.DS_Store
+Thumbs.db

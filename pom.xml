@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ua.privatbank.qa</groupId>
+    <artifactId>youtube-automation</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>YouTube UI automation</name>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <selenium.version>4.49.0</selenium.version>
+        <testng.version>7.12.0</testng.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <allure.version>2.35.5</allure.version>
+        <!-- CLI, з якого allure-maven збирає звіт, версіонується окремо від java-бібліотеки -->
+        <allure.report.version>2.46.1</allure.report.version>
+        <aspectj.version>1.9.25</aspectj.version>
+
+        <compiler.plugin.version>3.16.0</compiler.plugin.version>
+        <!-- 3.6.0 ігнорує suiteXmlFiles (параметр оголошено застарілим), тому лишаємось на 3.5.x,
+             доки прогін ведуть suite-файли TestNG -->
+        <surefire.version>3.5.6</surefire.version>
+        <allure.maven.version>2.18.0</allure.maven.version>
+
+        <suiteFile>testng.xml</suiteFile>
+        <allure.results>${project.build.directory}/allure-results</allure.results>
+
+        <!-- Значення за замовчуванням. Перекриваються з командного рядка: mvn test -Dheadless=true -->
+        <browser>chrome</browser>
+        <headless>false</headless>
+    </properties>
+
+    <!-- Проєкт не має продакшн-коду: і фреймворк, і тести живуть у src/test,
+         тому всі залежності — test scope. -->
+    <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+                <configuration>
+                    <!-- Зберігає імена параметрів у байткоді: без цього Allure не підставляє
+                         значення у назви кроків виду @Step("Ввести запит: {query}") -->
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <browser>${browser}</browser>
+                        <headless>${headless}</headless>
+                        <allure.results.directory>${allure.results}</allure.results.directory>
+                    </systemPropertyVariables>
+                    <!-- aspectj-агент потрібен, щоб працювали @Step в Allure -->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven.version}</version>
+                <configuration>
+                    <reportVersion>${allure.report.version}</reportVersion>
+                    <resultsDirectory>${allure.results}</resultsDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

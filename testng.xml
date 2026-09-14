@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="YouTube UI suite" verbose="1">
+
+    <!-- Швидкі перевірки без браузера: тестові дані для UI-сценарію -->
+    <test name="Unit">
+        <classes>
+            <class name="ua.privatbank.qa.tests.RandomQueryTest"/>
+        </classes>
+    </test>
+
+    <!-- Основний сценарій із ТЗ, кроки 1-10 -->
+    <test name="Search and subscribe">
+        <classes>
+            <class name="ua.privatbank.qa.tests.YouTubeSearchAndSubscribeTest"/>
+        </classes>
+    </test>
+
+</suite>
