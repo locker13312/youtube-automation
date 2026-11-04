@@ -1,4 +1,4 @@
-package ua.privatbank.qa.pages;
+package io.github.locker13312.qa.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;

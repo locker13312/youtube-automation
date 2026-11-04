@@ -1,4 +1,4 @@
-package ua.privatbank.qa.tests;
+package io.github.locker13312.qa.tests;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
@@ -9,13 +9,13 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.openqa.selenium.Dimension;
 import org.testng.annotations.Test;
-import ua.privatbank.qa.core.Browser;
-import ua.privatbank.qa.pages.ChannelPage;
-import ua.privatbank.qa.pages.SearchResultsPage;
-import ua.privatbank.qa.pages.SignInPromptDialog;
-import ua.privatbank.qa.pages.VideoPage;
-import ua.privatbank.qa.pages.YouTubeHomePage;
-import ua.privatbank.qa.utils.RandomQuery;
+import io.github.locker13312.qa.core.Browser;
+import io.github.locker13312.qa.pages.ChannelPage;
+import io.github.locker13312.qa.pages.SearchResultsPage;
+import io.github.locker13312.qa.pages.SignInPromptDialog;
+import io.github.locker13312.qa.pages.VideoPage;
+import io.github.locker13312.qa.pages.YouTubeHomePage;
+import io.github.locker13312.qa.utils.RandomQuery;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;

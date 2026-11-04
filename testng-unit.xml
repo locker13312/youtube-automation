@@ -6,7 +6,7 @@
 
     <test name="Unit">
         <classes>
-            <class name="ua.privatbank.qa.tests.RandomQueryTest"/>
+            <class name="io.github.locker13312.qa.tests.RandomQueryTest"/>
         </classes>
     </test>
 

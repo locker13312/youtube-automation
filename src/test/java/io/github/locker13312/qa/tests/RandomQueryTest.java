@@ -1,7 +1,7 @@
-package ua.privatbank.qa.tests;
+package io.github.locker13312.qa.tests;
 
 import org.testng.annotations.Test;
-import ua.privatbank.qa.utils.RandomQuery;
+import io.github.locker13312.qa.utils.RandomQuery;
 
 import java.util.HashSet;
 import java.util.Set;

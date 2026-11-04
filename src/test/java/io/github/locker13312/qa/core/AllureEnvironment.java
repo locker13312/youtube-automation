@@ -1,4 +1,4 @@
-package ua.privatbank.qa.core;
+package io.github.locker13312.qa.core;
 
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;

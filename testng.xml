@@ -6,14 +6,14 @@
     <!-- Швидкі перевірки без браузера: тестові дані для UI-сценарію -->
     <test name="Unit">
         <classes>
-            <class name="ua.privatbank.qa.tests.RandomQueryTest"/>
+            <class name="io.github.locker13312.qa.tests.RandomQueryTest"/>
         </classes>
     </test>
 
     <!-- Основний сценарій із ТЗ, кроки 1-10 -->
     <test name="Search and subscribe">
         <classes>
-            <class name="ua.privatbank.qa.tests.YouTubeSearchAndSubscribeTest"/>
+            <class name="io.github.locker13312.qa.tests.YouTubeSearchAndSubscribeTest"/>
         </classes>
     </test>
 

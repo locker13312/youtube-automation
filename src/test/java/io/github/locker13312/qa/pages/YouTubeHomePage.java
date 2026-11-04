@@ -1,4 +1,4 @@
-package ua.privatbank.qa.pages;
+package io.github.locker13312.qa.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -7,7 +7,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ua.privatbank.qa.core.Config;
+import io.github.locker13312.qa.core.Config;
 
 /** Головна сторінка YouTube. */
 public class YouTubeHomePage extends BasePage {

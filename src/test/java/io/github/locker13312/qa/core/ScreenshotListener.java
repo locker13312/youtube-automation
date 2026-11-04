@@ -1,4 +1,4 @@
-package ua.privatbank.qa.core;
+package io.github.locker13312.qa.core;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;

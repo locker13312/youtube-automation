@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ua.privatbank.qa</groupId>
+    <groupId>io.github.locker13312</groupId>
     <artifactId>youtube-automation</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>

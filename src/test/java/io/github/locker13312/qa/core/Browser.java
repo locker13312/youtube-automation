@@ -1,4 +1,4 @@
-package ua.privatbank.qa.core;
+package io.github.locker13312.qa.core;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;

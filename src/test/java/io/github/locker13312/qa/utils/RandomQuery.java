@@ -1,4 +1,4 @@
-package ua.privatbank.qa.utils;
+package io.github.locker13312.qa.utils;
 
 import java.util.concurrent.ThreadLocalRandom;
 

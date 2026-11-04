@@ -1,4 +1,4 @@
-package ua.privatbank.qa.pages;
+package io.github.locker13312.qa.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidSelectorException;
@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ua.privatbank.qa.core.Config;
+import io.github.locker13312.qa.core.Config;
 
 import java.util.Arrays;
 import java.util.List;

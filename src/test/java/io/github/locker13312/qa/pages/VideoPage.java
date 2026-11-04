@@ -1,4 +1,4 @@
-package ua.privatbank.qa.pages;
+package io.github.locker13312.qa.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

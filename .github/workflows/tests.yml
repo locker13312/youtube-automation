@@ -1,59 +1,54 @@
-name: UI tests
+name: CI
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
-  schedule:
-    # нічний прогін у будні, 03:00 UTC
-    - cron: '0 3 * * 1-5'
 
 jobs:
   unit:
-    name: Перевірка тестових даних
+    name: Test data checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
           cache: maven
 
-      - name: RandomQueryTest
+      - name: Run RandomQueryTest
         run: mvn -B test -DsuiteFile=testng-unit.xml
 
   ui:
-    name: UI-сценарій YouTube
+    name: YouTube UI scenario
     runs-on: ubuntu-latest
     needs: unit
-    # Сценарій ходить у зовнішній продакшн-сайт: падіння можливе через капчу,
-    # мовну версію інтерфейсу чи зміну верстки на боці Google, а не через дефект
-    # у коді. Тому на push і PR він не запускається — тільки вручну і нічним
-    # cron'ом. Там результат чесний: червоний означає «розберись за звітом».
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    # The scenario runs against live YouTube. From GitHub runners it often gets a captcha or another
+    # UI language, which says nothing about the code, so this job is started manually only.
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
 
-      - name: JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
           cache: maven
 
-      - name: Chrome
+      - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
-      - name: Прогін під Xvfb (headless YouTube частіше показує капчу)
+      - name: Run under Xvfb
         run: xvfb-run --auto-servernum mvn -B clean test -Dheadless=false
 
-      - name: Зберегти результати Allure
+      - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -61,7 +56,7 @@ jobs:
           path: target/allure-results
           retention-days: 14
 
-      - name: Зберегти скріншоти падінь
+      - name: Upload failure screenshots
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -70,7 +65,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
-      - name: Звіт TestNG
+      - name: Upload TestNG report
         if: always()
         uses: actions/upload-artifact@v4
         with:
